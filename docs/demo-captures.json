@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Deadlines and readiness",
+    "ask": "Which customer reviews are due, and which are blocked?",
+    "command": "npm run answers -- intake-review",
+    "output": "  code      account                    owner       due_on      questions  ready  blocked  readiness               \n  --------  -------------------------  ----------  ----------  ---------  -----  -------  ------------------------\n  SQ-KAURI  Kauri Systems (fictional)  Mara Chen   2026-11-07  3          1      2        blocked                 \n  SQ-RIMU   Rimu Data (fictional)      Nina Patel  2026-11-14  1          1      0        ready for human handover\n  SQ-EMPTY  Rimu Data (fictional)      Nina Patel  2026-11-21  0          0      0        blocked"
+  },
+  {
+    "title": "Answer currency",
+    "ask": "Which answers need review before we reuse them?",
+    "command": "npm run answers -- answer-refresh",
+    "output": "  code         topic       owner       evidence_code  review_due_on  currency  \n  -----------  ----------  ----------  -------------  -------------  ----------\n  AN-BACKUP    Resilience  Mara Chen   EV-BACKUP      2026-11-08     unapproved\n  AN-INCIDENT  Incident    Nina Patel  EV-NEW         2026-12-09     unapproved\n  AN-ACCESS    Access      Nina Patel  EV-ACCESS      2027-01-08     current"
+  },
+  {
+    "title": "Unanswered customer questions",
+    "ask": "Which customer questions still need an answer?",
+    "command": "npm run answers -- unanswered",
+    "output": "  code   questionnaire  question                             owner     \n  -----  -------------  -----------------------------------  ----------\n  RS-K3  SQ-KAURI       Do you operate in our jurisdiction?  Nina Patel"
+  }
+]

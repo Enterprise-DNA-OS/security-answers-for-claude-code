@@ -1,11 +1,56 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "response-pack",
+    "title": "Security questionnaire response pack: DRAFT",
+    "for_each": "select id,code from questionnaires order by code",
+    "file": "code",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Internal review only",
+        "note": "Nothing has been sent. Confirm evidence, recipient permission and current answers before handover. Evidence files are not attached.",
+        "sql": "select code,title,owner,due_on,readiness from questionnaire_readiness where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Records",
+        "sql": "select code,question,answer_text,readiness,evidence_code,evidence_version from response_readiness where questionnaire_id=$1 order by code"
+      }
+    ]
+  },
+  {
+    "name": "evidence-register",
+    "title": "Evidence reference register: INTERNAL",
+    "for_each": "select id,code from questionnaires order by code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Internal review only",
+        "note": "Nothing has been sent. Confirm evidence, recipient permission and current answers before handover. Evidence files are not attached.",
+        "sql": "select code,title,owner,due_on,readiness from questionnaire_readiness where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Records",
+        "sql": "select distinct a.evidence_code,a.evidence_version,a.classification,a.readiness from response_readiness a where questionnaire_id=$1 order by a.evidence_code"
+      }
+    ]
+  },
+  {
+    "name": "review-request",
+    "title": "Security answer review request: DRAFT",
+    "for_each": "select id,code from questionnaires order by code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Internal review only",
+        "note": "Nothing has been sent. Confirm evidence, recipient permission and current answers before handover. Evidence files are not attached.",
+        "sql": "select code,title,owner,due_on,readiness from questionnaire_readiness where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Records",
+        "sql": "select code,question,owner,readiness from response_readiness where questionnaire_id=$1 and readiness<>'ready' order by code"
+      }
     ]
   }
 ]

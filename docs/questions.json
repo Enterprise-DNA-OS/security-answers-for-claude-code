@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Which overdue questionnaires still contain unreviewed responses?",
+    "command": "intake-review"
+  },
+  {
+    "question": "Which approved answers stopped being current after their evidence changed?",
+    "command": "answer-refresh"
+  },
+  {
+    "question": "Which evidence expires before the next customer review?",
+    "command": "evidence-review"
+  },
+  {
+    "question": "Which response is waiting for a named reviewer?",
+    "command": "response-review"
+  },
+  {
+    "question": "Which questionnaires have no questions loaded?",
+    "command": "handover-ready"
+  },
+  {
+    "question": "Who owns the most blocked responses this week?",
+    "command": "owner-load"
+  },
+  {
+    "question": "Which stale answers are reused across open questionnaires?",
+    "command": "reused-answers"
+  },
+  {
+    "question": "Which customer questions have no linked answer?",
+    "command": "unanswered"
+  },
+  {
+    "question": "Which personal records are past their retention review date?",
+    "command": "privacy-review"
+  },
+  {
+    "question": "Who changed an answer and what did it say before?",
+    "command": "activity"
+  }
+]

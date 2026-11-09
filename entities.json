@@ -1,0 +1,100 @@
+{
+  "accounts": {
+    "fields": [
+      "code",
+      "name",
+      "owner",
+      "personal_data",
+      "retention_review_on"
+    ],
+    "required": [
+      "code",
+      "name",
+      "owner"
+    ],
+    "refs": {}
+  },
+  "evidence": {
+    "fields": [
+      "code",
+      "title",
+      "document_ref",
+      "version",
+      "owner",
+      "reviewed_on",
+      "expires_on",
+      "classification"
+    ],
+    "required": [
+      "code",
+      "title",
+      "document_ref",
+      "version",
+      "owner",
+      "expires_on"
+    ],
+    "refs": {}
+  },
+  "answers": {
+    "fields": [
+      "code",
+      "question",
+      "answer",
+      "topic",
+      "owner",
+      "evidence_id",
+      "review_due_on"
+    ],
+    "required": [
+      "code",
+      "question",
+      "answer",
+      "topic",
+      "owner",
+      "review_due_on"
+    ],
+    "refs": {
+      "evidence_id": "evidence"
+    }
+  },
+  "questionnaires": {
+    "fields": [
+      "code",
+      "title",
+      "account_id",
+      "owner",
+      "due_on",
+      "status"
+    ],
+    "required": [
+      "code",
+      "title",
+      "account_id",
+      "owner",
+      "due_on"
+    ],
+    "refs": {
+      "account_id": "accounts"
+    }
+  },
+  "responses": {
+    "fields": [
+      "code",
+      "questionnaire_id",
+      "question",
+      "answer_id",
+      "answer_text",
+      "owner"
+    ],
+    "required": [
+      "code",
+      "questionnaire_id",
+      "question",
+      "owner"
+    ],
+    "refs": {
+      "questionnaire_id": "questionnaires",
+      "answer_id": "answers"
+    }
+  }
+}

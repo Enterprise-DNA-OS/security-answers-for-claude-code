@@ -1,13 +1,35 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Security Answers for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Security review desk",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Questionnaire deadlines",
+        "sql": "select code,account,owner,due_on,questions,ready,blocked,readiness from questionnaire_readiness order by due_on"
+      },
+      {
+        "title": "Follow up",
+        "sql": "select * from security_attention order by rule,code"
+      }
+    ]
+  },
+  {
+    "name": "answer-currency",
+    "title": "Answer review register",
+    "sections": [
+      {
+        "title": "Evidence behind each answer",
+        "sql": "select code,topic,owner,evidence_code,review_due_on,currency from answer_currency order by code"
+      }
+    ]
+  },
+  {
+    "name": "owner-load",
+    "title": "Reviewer workload",
+    "sections": [
+      {
+        "title": "Open responses",
+        "sql": "select owner,count(*) as responses,count(*) filter(where readiness<>'ready') as blocked from response_readiness where questionnaire_status='open' group by owner order by owner"
       }
     ]
   }
